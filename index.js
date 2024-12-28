@@ -3,7 +3,10 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const userRoute = require("./routes/user")
+const bodyParser = require("body-parser")
 dotenv.config();
+
 
 const PORT = process.env.PORT || 3005
 app.use(express.static(path.join(__dirname, "public")))
@@ -18,6 +21,11 @@ app.get("/",(req,res)=>{
     //   res.sendFile("<h1> Hello World </h1>")
 
 })
+
+app.use(express.urlencoded({extended:true}))
+app.use(bodyParser.json())
+app.use("/api/user" ,userRoute)
+
 
 app.listen(PORT,()=>{
     console.log("Server running on 3005")
