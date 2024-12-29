@@ -4,6 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRoute = require("./routes/user")
+const jobRoute = require ("./routes/job")
 const bodyParser = require("body-parser")
 dotenv.config();
 
@@ -24,7 +25,8 @@ app.get("/",(req,res)=>{
 
 app.use(express.urlencoded({extended:true}))
 app.use(bodyParser.json())
-app.use("/api/user" ,userRoute)
+app.use("/api/user" ,userRoute);
+app.use("/api/job" ,jobRoute)
 
 
 app.listen(PORT,()=>{
